@@ -1,0 +1,1 @@
+﻿Projeto que exemplifica a criação CRUD de usuário usando Struts2, CDI(Weld), Maven, JPA, Sitemesh, JSTL e MySQL.

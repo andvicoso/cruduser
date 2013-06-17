@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Lista de usuários</title>
+</h:head>
+<h:body>
+	<h1>Lista de usuários</h1>
+	<br />
+	<h:form>
+		<h:commandButton action="add" actionlistener="#{userController.add}"
+			value="Cadastrar" />
+		<h:dataTable value="#{userController.users}" var="user">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{user.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Telefone" />
+				</f:facet>
+				<h:outputText value="#{user.phone}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ações" />
+				</f:facet>
+				<h:commandButton action="edit"
+					actionListener="#{userController.edit(user)}" value="Editar" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

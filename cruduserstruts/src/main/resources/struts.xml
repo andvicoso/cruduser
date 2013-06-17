@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+
+	<package name="default" extends="hibernate-default,convention-default">
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="org.andvicoso.cruduser.controller.interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="crudUserStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="crudUserStack" />
+
+		<global-results>
+			<result name="index">
+				<param name="location">/index.jsp</param>
+			</result>
+			<result name="login">
+				<param name="location">/WEB-INF/content/login/login.jsp</param>
+			</result>
+		</global-results>
+	</package>
+
+</struts>

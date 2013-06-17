@@ -1,0 +1,224 @@
+@charset "utf-8";
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
+{
+	font: inherit;
+	line-height: 110%;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+html,body {
+	height: 100%;
+}
+
+html {
+	font-size: 100.01%;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+h2 {
+	font-size: 24px;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+h4 {
+	font-size: 14px;
+}
+
+h5 {
+	font-size: 12px;
+}
+
+h6 {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+ol,ul {
+	list-style: none;
+}
+
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	margin: 0px;
+	padding: 0px;
+	background: gray;
+}
+
+/* ~~ Element/tag selectors ~~ */
+ul,ol,dl {
+	/* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .admin_menu_item list unless you write a more specific selector. */
+	padding: 0px;
+	margin: 0px;
+}
+
+button {
+	font-size: 12px;
+}
+
+input {
+	font-size: 12px;
+}
+
+a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	color: black;
+}
+
+a:hover {
+	color: red;
+}
+
+#header {
+	width: 100%;
+	height: 120px;
+	margin: 0;
+	padding: 0;
+	clear: both;
+	border:1px solid black;
+}
+
+#header h1 {
+	text-align: center;
+}
+
+#footer {
+	font-size: 10px;
+	width: 100%;
+	height: 30px;
+	margin: 0;
+	padding: 0;
+	clear: both;
+	text-align: center;
+	border:1px solid black;
+}
+
+#bar {
+	vertical-align: middle;
+	background: #AAAAAA;
+	width: 100%;
+	height: 30px;
+	margin-top: 50px;
+	padding: 0;
+	clear: both;
+}
+
+#bar .search {
+	float: right;
+}
+
+#bar .date {
+	float: left;
+	margin: 5px;
+}
+
+#main {
+	border: thin black solid;
+	margin-left: 100px;
+	background: white;
+	min-height: 400px;
+	padding: 10px;
+	margin-left: 100px;
+}
+
+#menu {
+	float: left;
+	width: 100px;
+	border:1px solid black;
+	min-height: 400px;
+}
+
+#menu ul li a {
+	vertical-align: middle;
+	float: left;
+	display: block;
+	clear: both;
+	background: black;
+	color: white;
+	width: 90px;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px;
+}
+
+#menu ul li a:hover {
+	background: navy;
+	padding: 5px;
+}
+
+form label {
+	width: 100px;
+}
+
+form input {
+	width: 250px;
+	margin: 5px;
+}
+
+form input[type="submit"],form input[type="reset"] {
+	background: black;
+	color: white;
+	border: none;
+	width: 60px;
+}
+
+table.zebra tbody tr:nth-child(odd) {
+	background-color: #CCCCCC;
+}
+
+table{
+	border-color: black;
+	border-width: thin;
+}
+
+table thead {
+	background: black;
+	color: white;
+}
+
+table td,table th {
+	padding: 5px;
+}
+
+.info,.error,.success,.alert,.warning {
+	color: #00529b;
+	text-shadow: 1px 1px 0px #ffffff;
+	margin: 5px 0px;
+	padding: 5px 5px 5px 30px;
+	border: 1px solid;
+	border-radius: 3px;
+	background-color: #bde5f8;
+	background-image: url("../images/icons/info.png");
+	background-repeat: no-repeat;
+	background-position: 5px center;
+	box-shadow: 0px 0px 2px #bde5f8;
+	text-align: left;
+}
+
+.success {
+	color: #4f8a10;
+	background-color: #dff2bf;
+	box-shadow: 0px 0px 2px #dff2bf;
+}
+
+.alert,.warning {
+	color: #9f6000;
+	background-color: #feefb3;
+	box-shadow: 0px 0px 2px #feefb3;
+}
+
+.error {
+	color: #d8000c;
+	background-color: #ffbaba;
+	box-shadow: 0px 0px 2px #ffbaba;
+}

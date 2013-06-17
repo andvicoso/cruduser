@@ -1,0 +1,1 @@
+Projeto que exemplifica a criação CRUD de usuário usando Servlets 3.0, Maven, JPA, Sitemesh, JSTL e MySQL.

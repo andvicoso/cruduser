@@ -1,0 +1,1 @@
+Conjuntos de projetos que exemplificam a criação de CRUDs de usuário usando diferentes frameworks e tecnologias.

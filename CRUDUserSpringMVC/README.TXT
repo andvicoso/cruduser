@@ -1,0 +1,1 @@
+Projeto que exemplifica a criação CRUD de usuário usando Spring 3, Spring MVC 3, Maven, JPA, Sitemesh, JSTL e MySQL.

@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<h1>Cadastro de Usuário</h1>
+	<br />
+	<h:messages />
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Nome" />
+			<h:inputText value="#{userController.user.name}" />
+			<h:outputText value="Telefone" />
+			<h:inputText value="#{userController.user.phone}" />
+			<h:outputText value="Login" />
+			<h:inputText value="#{userController.user.login}" />
+			<h:outputText value="Password" />
+			<h:inputSecret value="#{userController.user.password}" />
+			<h:commandButton action="#{userController.add}" value="Cadastrar" />
+			<h:commandButton action="users" immediate="true" value="Cancelar" />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
+
