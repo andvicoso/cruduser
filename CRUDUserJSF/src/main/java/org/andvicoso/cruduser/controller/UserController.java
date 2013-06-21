@@ -1,26 +1,29 @@
 package org.andvicoso.cruduser.controller;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.andvicoso.cruduser.model.dao.UserDao;
 import org.andvicoso.cruduser.model.dao.UserDaoJPA;
 import org.andvicoso.cruduser.model.domain.User;
+import org.apache.commons.lang3.StringUtils;
 
 @ManagedBean
-@ViewScoped
-public class UserController implements Serializable {
+@SessionScoped
+public class UserController extends BaseController {
 
+	private static final String LIST = "list";
 	private UserDao dao;
-	private User user = new User();
+	private User user;
 	private List<User> users;
+	private String password;
 
 	@PostConstruct
 	public void init() {
+		user = new User();
 		dao = new UserDaoJPA();
 		users = dao.list();
 	}
@@ -28,23 +31,26 @@ public class UserController implements Serializable {
 	public String add() {
 		dao.create(user);
 		user = new User();
-		return "list";
+
+		return LIST;
 	}
 
-	public String edit(User user) {
+	public void edit(User user) {
 		this.user = user;
-		return "edit";
+		this.password = user.getPassword();
 	}
 
-	public String save(User user) {
+	public String save() {
+		if (StringUtils.isNotBlank(password))
+			user.setPassword(password);
 		dao.update(user);
 		user = new User();
-		return "list";
+		return LIST;
 	}
 
 	public String delete(User user) {
 		dao.remove(user.getId());
-		return "list";
+		return LIST;
 	}
 
 	public User getUser() {
@@ -53,5 +59,13 @@ public class UserController implements Serializable {
 
 	public List<User> getUsers() {
 		return users;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

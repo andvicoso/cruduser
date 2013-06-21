@@ -2,58 +2,56 @@ package org.andvicoso.cruduser.controller;
 
 import java.io.IOException;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+import javax.faces.bean.RequestScoped;
 
 import org.andvicoso.cruduser.model.dao.UserDao;
 import org.andvicoso.cruduser.model.dao.UserDaoJPA;
 import org.andvicoso.cruduser.model.domain.User;
 import org.andvicoso.cruduser.model.manager.LoginManager;
+import org.apache.commons.lang3.StringUtils;
 
 @ManagedBean
-@ViewScoped
-public class LoginController {
-	private LoginManager manager;
+@RequestScoped
+public class LoginController extends BaseController {
 	private UserDao dao;
 	private String login;
 	private String password;
 
-	public void doLogin() throws IOException {
+	public String doLogin() throws IOException {
+		LoginManager manager = new LoginManager();
 		dao = new UserDaoJPA();
-		manager = new LoginManager();
 		User user = dao.findByLogin(login);
-		FacesContext fc = FacesContext.getCurrentInstance();
-		ExternalContext ec = fc.getExternalContext();
+
 		String msg = "";
 
 		if (user == null) {
-			msg = "Nenhum usuario encontrado com o login: '" + login + "'!";
-		} else if (manager.verifyUser(password, user)) {
-			msg = "Senha inválida!";
+			msg = "Nenhum usuário encontrado com o login: '" + login + "'!";
+		} else if (StringUtils.isNotBlank(password)
+				&& manager.verifyUser(password, user)) {
+			manager.login(user, getSession(true));
 		} else {
-			HttpSession session = (HttpSession) ec.getSession(true);
-			manager.populateSession(user, session);
-
-			ec.redirect("/index.html");
+			msg = "Senha inválida!";
 		}
 
-		if (!msg.isEmpty()) {
-			fc.addMessage("login", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, msg, msg));
-			ec.dispatch("/error/error.xhtml");
+		boolean ok = !msg.isEmpty();
+
+		if (ok) {
+			addError("login", msg);
 		}
+
+		return ok ? INDEX : ERROR;
 	}
 
 	public String logout() {
-		ExternalContext ec = FacesContext.getCurrentInstance()
-				.getExternalContext();
-		HttpSession session = (HttpSession) ec.getSession(false);
-		manager.removeSession(session);
-		return "index";
+		LoginManager manager = new LoginManager();
+		manager.logout(getSession(false));
+
+		return INDEX;
+	}
+
+	public String index() {
+		return INDEX;
 	}
 
 	public String getLogin() {

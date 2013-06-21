@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.andvicoso.cruduser.utils.EncryptUtils;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,9 +26,9 @@ public class User implements Serializable {
 	@Length(max = 50)
 	private String phone;
 	@NotEmpty
+	@Length(min = 3, max = 10)
 	private String login;
 	@NotEmpty
-	@Length(min = 3, max = 10)
 	private String password;
 
 	public User() {
@@ -70,7 +71,7 @@ public class User implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = EncryptUtils.encrypt(password);
 	}
 
 }

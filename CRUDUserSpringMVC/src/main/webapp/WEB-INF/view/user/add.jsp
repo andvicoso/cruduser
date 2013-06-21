@@ -20,7 +20,7 @@
 		<input type="text" name="login" id="login">
 		<br />
 		<label for="password">Senha:</label>
-		<input type="text" name="password" id="password">
+		<input type="password" name="password" id="password">
 		<br />
 		<input type="submit" class="button" value="Salvar">
 	</form>

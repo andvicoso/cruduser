@@ -10,20 +10,21 @@
 	<br>
 	<s:actionerror />
 	<s:actionmessage />
-	<form action="save" method="post">
-		<input type="hidden" name="id" value="${user.id}">
+	<form action="user/save" method="post">
+		<input type="hidden" name="user.id" value="${user.id}">
 		<label for="name">Nome:</label>
-		<input type="text" name="name" id="name" value="${user.name}">
+		<input type="text" name="user.name" id="name" value="${user.name}">
 		<br>
 		<label for="phone">Telefone:</label>
-		<input type="text" name="phone" id="phone" value="${user.phone}">
+		<input type="text" name="user.phone" id="phone" value="${user.phone}">
 		<br />
 		<label for="login">Login:</label>
-		<input type="text" name="login" id="login" value="${user.login}"/>
+		<input type="text" name="user.login" id="login" value="${user.login}"/>
 		<br />
-		<label for="password">Senha:</label>
-		<input type="password" name="password" id="password" value="${user.password}">
+		<label for="password">Senha*:</label>
+		<input type="password" name="password" id="password">
 		<br />
+		<small>*Deixe vazio se não quiser alterar.</small><br/>
 		<input type="submit" class="button" value="Salvar">
 	</form>
 	<c:if test="${not empty sessionScope.userId}">

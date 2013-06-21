@@ -9,26 +9,32 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-public abstract class GenericDaoJPA<O> implements GenericDao<O> {
+public class GenericDaoJPA<O> implements GenericDao<O> {
+	private static final String PERSISTENCE_UNIT = "cruduser";
+	private static EntityManagerFactory factory;
 	protected EntityManager entityManager;
 	private Class<O> type;
+	private String list;
 
 	protected GenericDaoJPA() {
-		EntityManagerFactory factory = Persistence
-				.createEntityManagerFactory("cruduser");
+		if (factory == null) {
+			factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		}
 		entityManager = factory.createEntityManager();
-		// entityManager = new EntityManagerProducer().getEntityManager();
+
 		Type t = getClass().getGenericSuperclass();
 		ParameterizedType pt = (ParameterizedType) t;
+
 		type = (Class<O>) pt.getActualTypeArguments()[0];
+		list = "SELECT o FROM " + type.getSimpleName() + " o";
 	}
 
-	public void put(O obj) {
+	public void create(O obj) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(obj);
 		entityManager.getTransaction().commit();
 	}
-	
+
 	public void update(O obj) {
 		entityManager.getTransaction().begin();
 		entityManager.merge(obj);
@@ -36,9 +42,7 @@ public abstract class GenericDaoJPA<O> implements GenericDao<O> {
 	}
 
 	public List<O> list() {
-		String entityName = type.getSimpleName();
-		String q = "Select o from " + entityName + " o";
-		return createQuery(q).getResultList();
+		return createQuery(list).getResultList();
 	}
 
 	public O find(long id) {
@@ -46,10 +50,12 @@ public abstract class GenericDaoJPA<O> implements GenericDao<O> {
 	}
 
 	public void remove(long id) {
-		O u = find(id);
-		entityManager.getTransaction().begin();
-		entityManager.remove(u);
-		entityManager.getTransaction().commit();
+		O obj = entityManager.getReference(type, id);
+		if (obj != null) {
+			entityManager.getTransaction().begin();
+			entityManager.remove(obj);
+			entityManager.getTransaction().commit();
+		}
 	}
 
 	protected TypedQuery<O> createQuery(String q) {

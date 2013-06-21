@@ -5,7 +5,6 @@
 
 <struts>
 
-
 	<package name="default" extends="hibernate-default,convention-default">
 		<interceptors>
 			<interceptor name="loginInterceptor"

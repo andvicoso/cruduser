@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>
-		Erro - ${errorMsg}! Tente <a
+		Erro - ${error}! Tente <a
 			href="${pageContext.request.contextPath}/index.jsp">isso</a>!
 	</h1>
 </body>

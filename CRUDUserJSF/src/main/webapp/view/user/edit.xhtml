@@ -1,7 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-
+<h:head>
+	<title>Editar #{userController.user.name}</title>
+</h:head>
 <h:body>
 	<h1>Editar #{userController.user.name}</h1>
 	<br />
@@ -15,13 +17,14 @@
 			<h:inputText value="#{userController.user.phone}" />
 			<h:outputText value="Login" />
 			<h:inputText value="#{userController.user.login}" />
-			<h:outputText value="Password" />
-			<h:inputSecret value="#{userController.user.password}" />
-			<h:commandButton action="#{userController.save}" value="Salvar" />
+			<h:outputText value="Password*" />
+			<h:inputSecret value="#{userController.password}" />
+			<h:commandButton action="#{userController.save()}" value="Salvar" />
 		</h:panelGrid>
+		<h:outputText value="*Deixe vazio se não quiser alterar." />
 	</h:form>
 	<h:form>
-		<h:commandButton action="#{userController.delete(user)}"
+		<h:commandButton action="#{userController.delete(userController.user)}"
 			value="Remover"
 			onclick="javascript:return confirm('Tem certeza que deseja remover o usuario #{userController.user.name}?')" />
 	</h:form>

@@ -28,8 +28,7 @@ public class AddUserAction extends ActionSupport {
 
 	@Action("put")
 	public String put() {
-		dao.put(user);
-
+		dao.create(user);
 		return SUCCESS;
 	}
 

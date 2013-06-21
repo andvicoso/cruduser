@@ -22,9 +22,11 @@
 		<label for="login">Login:</label>
 		<input type="text" name="user.login" id="login" value="${user.login}" required />
 		<br />
-		<label for="password">Senha:</label>
+		<label for="password">Senha*:</label>
 		<input type="password" name="user.password" id="password" value="" required />
 		<br />
+		<small>*Deixe em branco para não alterar.</small>
+		<br/>
 		<input type="submit" class="btn btn-primary" value="Salvar">
 	</form>
 	<c:if test="${not empty sessionScope.userId}">

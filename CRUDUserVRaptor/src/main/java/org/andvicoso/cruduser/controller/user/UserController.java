@@ -40,25 +40,31 @@ public class UserController {
 
 	@Post
 	public void update(User user) {
-		if (dao.find(user.getId()) != null) {
-			validator.checking(getUserValidations(user));
+		User oldUser = dao.find(user.getId());
+		if (oldUser != null) {
+			validator.checking(getValidations(user, true));
 			validator.onErrorUsePageOf(UserController.class).edit(user.getId());
+
+			if (StringUtils.isBlank(user.getPassword()))
+				user.setPassword(oldUser.getPassword());
+
 			dao.update(user);
 		}
 		result.redirectTo(this).list();
 	}
 
-	private Validations getUserValidations(final User user) {
+	private Validations getValidations(final User user, final boolean isEdit) {
 		return new Validations() {
 			{
-				that(StringUtils.isNotEmpty(user.getName()), "error",
+				that(StringUtils.isNotBlank(user.getName()), "error",
 						"name.empty");
-				that(StringUtils.isNotEmpty(user.getLogin()), "error",
-						"login.empty");
-				that(StringUtils.isNotEmpty(user.getPassword()), "error",
-						"password.empty");
-				that(StringUtils.isNotEmpty(user.getPhone()), "error",
+				that(StringUtils.isNotBlank(user.getPhone()), "error",
 						"phone.empty");
+				that(StringUtils.isNotBlank(user.getLogin()), "error",
+						"login.empty");
+				if (!isEdit)
+					that(StringUtils.isNotBlank(user.getPassword()), "error",
+							"password.empty");
 			}
 		};
 	}
@@ -74,11 +80,12 @@ public class UserController {
 	}
 
 	@Post
+	@Public
 	public void put(User user) {
-		validator.checking(getUserValidations(user));
+		validator.checking(getValidations(user, false));
 		validator.onErrorUsePageOf(UserController.class).add();
 
-		dao.put(user);
+		dao.create(user);
 		result.redirectTo(this).list();
 	}
 }

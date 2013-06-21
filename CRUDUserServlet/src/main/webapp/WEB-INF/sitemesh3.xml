@@ -1,0 +1,5 @@
+<sitemesh>
+	<mapping decorator="/WEB-INF/decorators/main.jsp" />
+	<!-- Exclude path from decoration. -->
+	<!-- <mapping path="/static/*" exclue="true" /> -->
+</sitemesh>

@@ -7,6 +7,7 @@
 		<c:set var="logged" value="${not empty sessionScope.userId}" />
 		<c:set var="login" value="${logged ? 'logout': 'login'}" />
 		<c:set var="loginText" value="${logged ? 'Logout': 'Login'}" />
+		<li><a href="index">Home</a></li>
 		<li><a href="login/${login}">${loginText}</a></li>
 		<li><a href="user/add">Cadastrar</a></li>
 		<li><a href="user/list">Listar</a></li>

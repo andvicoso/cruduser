@@ -18,10 +18,11 @@
 		<label for="login">Login:</label>
 		<input type="text" name="login" id="login" value="${user.login}">
 		<br />
-		<label for="password">Senha:</label>
-		<input type="text" name="password" id="password"
-			value="${user.password}">
-		<br /> <br />
+		<label for="password">Senha*:</label>
+		<input type="text" name="password" id="password">
+		<br />
+		<small>*Deixe em branco para não alterar.</small>
+		<br />
 		<input type="submit" class="button" value="Salvar">
 	</form>
 	<form action="user/remove" method="post">

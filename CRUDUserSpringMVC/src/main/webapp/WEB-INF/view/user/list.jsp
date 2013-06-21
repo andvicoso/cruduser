@@ -8,13 +8,16 @@
 </head>
 <body>
 	<h1>Lista de usuários cadastrados</h1>
-	<br/>
+	<br />
+	<c:set var="logged" value="${not empty sessionScope.userId}" />
 	<table class="zebra">
 		<thead>
 			<tr>
 				<th align="center"><b>Usuário</b></th>
 				<th align="center"><b>Telefone</b></th>
-				<th align="center"><b>Ações</b></th>
+				<c:if test="${logged}">
+					<th align="center"><b>Ações</b></th>
+				</c:if>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,7 +25,9 @@
 				<tr>
 					<td>${user.name}</td>
 					<td>${user.phone}</td>
-					<td><a href="user/edit?id=${user.id}">Editar</a></td>
+					<c:if test="${logged}">
+						<td><a href="user/edit?id=${user.id}">Editar</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

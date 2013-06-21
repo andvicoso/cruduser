@@ -5,7 +5,7 @@
 <ul class="nav nav-pills pull-right">
 	<c:set var="login" value="${loginInfo.logged ? 'logout': 'login'}" />
 	<c:set var="loginText" value="${loginInfo.logged ? 'Logout': 'Login'}" />
-	<li><a href="">Início</a></li>
+	<li><a href="">Home</a></li>
 	<li><a href="login/${login}">${loginText}</a></li>
 	<li><a href="user/add">Cadastrar</a></li>
 	<li><a href="user/list">Listar</a></li>

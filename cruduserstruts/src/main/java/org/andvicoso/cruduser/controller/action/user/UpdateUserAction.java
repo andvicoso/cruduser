@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.andvicoso.cruduser.controller.action.SecureAction;
 import org.andvicoso.cruduser.model.dao.UserDao;
 import org.andvicoso.cruduser.model.domain.User;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
@@ -19,8 +20,14 @@ public class UpdateUserAction extends ActionSupport implements SecureAction {
 	@Inject
 	private UserDao dao;
 
+	private String password;
+
 	@Action("update")
 	public String update() {
+		if (StringUtils.isNotBlank(password)) {
+			User oldUser = dao.find(user.getId());
+			user.setPassword(oldUser.getPassword());
+		}
 		dao.update(user);
 
 		return SUCCESS;
@@ -32,5 +39,9 @@ public class UpdateUserAction extends ActionSupport implements SecureAction {
 
 	public User getUser() {
 		return user;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

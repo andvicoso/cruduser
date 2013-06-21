@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<html>
+<head>
+<title>Entrar</title>
+</head>
+<body>
 <h1>Entrar</h1>
 <br />
 <s:actionerror />
@@ -14,3 +19,5 @@
 	<br /> <br />
 	<input type="submit" class="button" value="Entrar">
 </form>
+</body>
+</html>

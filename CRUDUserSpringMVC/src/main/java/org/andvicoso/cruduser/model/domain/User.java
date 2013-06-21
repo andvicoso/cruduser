@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.andvicoso.cruduser.utils.EncryptUtils;
+
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
@@ -60,7 +62,7 @@ public class User implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = EncryptUtils.encrypt(password);
 	}
 
 }

@@ -9,6 +9,7 @@
 
 	<h1>Cadastro de Usuário</h1>
 	<br>
+	<s:fielderror fieldName="user.password"></s:fielderror>
 	<s:actionerror />
 	<s:actionmessage />
 	<form action="user/put" method="post" class="forms">
@@ -22,7 +23,7 @@
 		<input type="text" name="user.login" id="login" />
 		<br />
 		<label for="password">Senha:</label>
-		<input type="password" name="user.password" id="password">
+		<s:password name="user.password" id="password"  />
 		<br />
 		<input type="submit" class="button" value="Salvar">
 	</form>
