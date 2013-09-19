@@ -34,7 +34,7 @@ public class LoginController extends BaseController {
 			msg = "Senha inválida!";
 		}
 
-		boolean ok = !msg.isEmpty();
+		boolean ok = msg.isEmpty();
 
 		if (ok) {
 			addError("login", msg);

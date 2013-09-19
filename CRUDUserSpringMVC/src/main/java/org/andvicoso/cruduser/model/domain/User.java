@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.andvicoso.cruduser.utils.EncryptUtils;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "user")
@@ -17,9 +19,16 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotEmpty
+	@Length(max = 50)
 	private String name;
+	@NotEmpty
+	@Length(max = 50)
 	private String phone;
+	@NotEmpty
+	@Length(min = 3, max = 10)
 	private String login;
+	@NotEmpty
 	private String password;
 
 	public User() {

@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 @SessionScoped
 public class UserController extends BaseController {
 
-	private static final String LIST = "list";
+	private static final String LIST = "list?faces-redirect=true";
 	private UserDao dao;
 	private User user;
 	private List<User> users;
@@ -45,11 +45,13 @@ public class UserController extends BaseController {
 			user.setPassword(password);
 		dao.update(user);
 		user = new User();
+		
 		return LIST;
 	}
 
 	public String delete(User user) {
 		dao.remove(user.getId());
+		
 		return LIST;
 	}
 

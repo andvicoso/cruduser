@@ -10,8 +10,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
 		<struts2.version>2.3.14.2</struts2.version>
 		<hibernate.version>4.2.0.Final</hibernate.version>
 	</properties>
@@ -102,12 +102,12 @@
 			<artifactId>struts2-sitemesh-plugin</artifactId>
 			<version>${struts2.version}</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>com.google.code</groupId>
 			<artifactId>struts2-fullhibernatecore-plugin</artifactId>
 			<version>2.2.2</version>
 		</dependency>
-		<dependency>
+ -->		<dependency>
 			<groupId>com.jgeppert.struts2.jquery</groupId>
 			<artifactId>struts2-jquery-plugin</artifactId>
 			<version>3.5.1</version>

@@ -19,7 +19,7 @@
 			<h:inputText value="#{userController.user.login}" />
 			<h:outputText value="Password*" />
 			<h:inputSecret value="#{userController.password}" />
-			<h:commandButton action="#{userController.save()}" value="Salvar" />
+			<h:commandButton action="#{userController.save}" value="Salvar" />
 		</h:panelGrid>
 		<h:outputText value="*Deixe vazio se não quiser alterar." />
 	</h:form>
