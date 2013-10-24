@@ -33,7 +33,6 @@ public class UserController {
 		return LIST;
 	}
 
-	@Transactional
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam Integer id) {
 		dao.remove(id);
@@ -41,7 +40,6 @@ public class UserController {
 		return REDIRECT + LIST;
 	}
 
-	@Transactional
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@ModelAttribute User newUser, @RequestParam Integer id) {
 		User user = dao.find(id);
@@ -66,7 +64,6 @@ public class UserController {
 		return result;
 	}
 
-	@Transactional
 	@RequestMapping(value = "/put", method = RequestMethod.POST)
 	public String put(@ModelAttribute @Valid User user, BindingResult result) {
 		if (!result.hasErrors()) {
